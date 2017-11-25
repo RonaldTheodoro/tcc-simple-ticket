@@ -1,0 +1,14 @@
+{% extends 'base_accounts.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Sign Up</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {% include 'form.html' %}
+        <button type="submit" class="btn btn-primary">
+            Create an account
+        </button>
+    </form>
+    Already have an account? <a href="{% url 'accounts:login' %}">Log In</a>
+{% endblock content %}
