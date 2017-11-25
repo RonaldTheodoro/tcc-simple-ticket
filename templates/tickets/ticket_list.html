@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table able-sm table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Requester</th>
+                <th>Created</th>
+                <th>Modified</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.pk }}</td>
+                    <td>
+                        <a href="{% url 'tickets:detail' ticket.pk %}">
+                            {{ ticket.description }}
+                        </a>
+                    </td>
+                    <td>{{ ticket.requester }}</td>
+                    <td>{{ ticket.created }}</td>
+                    <td>{{ ticket.modified }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
