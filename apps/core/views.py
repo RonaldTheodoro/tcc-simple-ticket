@@ -6,5 +6,5 @@ from apps.tickets import models
 
 @login_required
 def index(request):
-    tickets = get_list_or_404(models.Ticket)  # , active=True)
+    tickets = get_list_or_404(models.Ticket, active=True)
     return render(request, 'core/index.html', {'tickets': tickets})
