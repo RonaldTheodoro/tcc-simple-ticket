@@ -1,31 +1,29 @@
-<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-    <h1>Dashboard</h1>
-    <section class="row text-center placeholders">
+<h1>Dashboard</h1>
+<section class="row text-center placeholders">
 
-    </section>
-    <h2>Section title</h2>
-    <div class="table-responsive">
-        <table class="table able-sm table-striped">
-            <thead class="thead-dark">
+</section>
+<h2>Section title</h2>
+<div class="table-responsive">
+    <table class="table able-sm table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Requester</th>
+                <th>Created</th>
+                <th>Modified</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
                 <tr>
-                    <th>Id</th>
-                    <th>Description</th>
-                    <th>Requester</th>
-                    <th>Created</th>
-                    <th>Modified</th>
+                    <td>{{ ticket.pk }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.requester }}</td>
+                    <td>{{ ticket.created }}</td>
+                    <td>{{ ticket.modified }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for ticket in tickets %}
-                    <tr>
-                        <td>{{ ticket.pk }}</td>
-                        <td>{{ ticket.description }}</td>
-                        <td>{{ ticket.requester }}</td>
-                        <td>{{ ticket.created }}</td>
-                        <td>{{ ticket.modified }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</main>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

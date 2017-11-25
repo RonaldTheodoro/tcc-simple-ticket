@@ -19,8 +19,13 @@
         {% include 'navbar.html' %}
     </header>
     <div class="container-fluid">
-        {% block content %}
-        {% endblock content %}
+        <div class="row">
+            {% include 'core/sidebar.html' %}
+            <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+                {% block content %}
+                {% endblock content %}
+            </main>            
+        </div>
     </div>
 
     <script src="{% static 'js/jquery.js' %}"></script>
