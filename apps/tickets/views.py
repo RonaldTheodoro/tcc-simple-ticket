@@ -58,6 +58,11 @@ class OpenTicketView(generic.FormView):
             models.File.objects.create(file=file, ticket=ticket)
 
 
+class TicketList(generic.ListView):
+    model = models.Ticket
+    template_name = 'tickets/list.html'
+
+
 class TicketDetail(generic.DetailView):
     model = models.Ticket
     template_name = 'tickets/detail.html'
