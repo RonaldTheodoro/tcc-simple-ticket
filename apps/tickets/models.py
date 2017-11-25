@@ -24,6 +24,14 @@ User = get_user_model()
 class Ticket(TimeStampedModel):
     description = models.CharField('description', max_length=255)
     active = models.BooleanField('active', default=True)
+    finished_at = fields.MonitorField(
+        'finished at',
+        default=None,
+        blank=True,
+        null=True,
+        monitor='active',
+        when=[False]
+    )
     requester = models.ForeignKey(
         User,
         verbose_name='requester',
