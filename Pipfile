@@ -9,7 +9,7 @@ name = "pypi"
 
 dj-database-url = "*"
 dj-static = "*"
-Django = "*"
+django = "*"
 django-extensions = "*"
 django-test-without-migrations = "*"
 python-decouple = "*"
@@ -17,6 +17,7 @@ python-decouple = "*"
 gunicorn = "*"
 "psycopg2" = "*"
 django-widget-tweaks = "*"
+django-model-utils = "*"
 
 
 [dev-packages]
