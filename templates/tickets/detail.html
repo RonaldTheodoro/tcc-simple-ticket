@@ -15,6 +15,10 @@
             <td>{{ ticket.active }}</td>
         </tr>
         <tr>
+            <th class="text-nowrap" scope="row">Requester</th>
+            <td>{{ ticket.requester }}</td>
+        </tr>
+        <tr>
             <th class="text-nowrap" scope="row">Created</th>
             <td>{{ ticket.created }}</td>
         </tr>
@@ -22,13 +26,11 @@
             <th class="text-nowrap" scope="row">Modified</th>
             <td>{{ ticket.modified }}</td>
         </tr>
-        <tr>
-            <th class="text-nowrap" scope="row">Finished at</th>
-            <td>{{ ticket.finished_at }}</td>
-        </tr>
-        <tr>
-            <th class="text-nowrap" scope="row">Requester</th>
-            <td>{{ ticket.requester }}</td>
-        </tr>
+        {% if not ticket.active %}
+            <tr>
+                <th class="text-nowrap" scope="row">Finished at</th>
+                <td>{{ ticket.finished_at }}</td>
+            </tr>
+        {% endif %}
     </table>
 {% endblock content %}
