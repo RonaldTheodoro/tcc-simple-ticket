@@ -38,6 +38,9 @@ class Ticket(TimeStampedModel):
         related_name='ticket'
     )
 
+    class Meta:
+        ordering = ['-created', 'active']
+
     def __str__(self):
         return self.description
 
