@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block header %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <div class="jumbotron">
-        <img src="{% static 'img/django.jpg' %}" alt="logo">
-        <h1>Welcome to Simple Ticket</h1>
-    </div>
-{% endblock header %}
-
 {% block content %}
-    <p>This is just a basic sample for django projects</p>
+    <div class="row">
+        {% include 'core/sidebar.html' %}
+        {% include 'core/main.html' %}
+    </div>
 {% endblock content %}
