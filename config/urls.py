@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # Core app
     url(r'^', include('apps.core.urls', namespace='core')),
+    # Tickets app
+    url(r'^tickets/', include('apps.tickets.urls', namespace='tickets')),
     # Accounts app
     url(r'^accounts/', include('apps.accounts.urls', namespace='accounts')),
 
