@@ -14,7 +14,8 @@ def get_filename_ext(filepath):
 def upload_file_path(instance, filename):
     name, ext = get_filename_ext(filename)
     new_filename = hash(name)
-    return f'files/{instance.ticket.pk}/{new_filename}{ext}'
+    pk = instance.ticket.pk
+    return f'files/{pk}/{pk}-{new_filename}{ext}'
 
 
 User = get_user_model()
