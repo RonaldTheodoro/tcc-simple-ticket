@@ -56,3 +56,8 @@ class OpenTicketView(generic.FormView):
     def save_files(self, files, ticket):
         for file in files:
             models.File.objects.create(file=file, ticket=ticket)
+
+
+class TicketDetail(generic.DetailView):
+    model = models.Ticket
+    template_name = 'tickets/detail.html'
