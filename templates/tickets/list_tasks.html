@@ -1,0 +1,22 @@
+<table class="table able-sm table-striped">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Active</th>
+            <th>Executor</th>
+            <th>Finished</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in ticket.task.all %}
+            <tr>
+                <td>{{ task.description }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.active }}</td>
+                <td>{{ task.executor }}</td>
+                <td>{{ task.finished_at }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
