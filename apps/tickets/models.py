@@ -2,6 +2,7 @@ import os
 
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 from model_utils import Choices, fields
 from model_utils.models import TimeStampedModel
 
@@ -43,6 +44,9 @@ class Ticket(TimeStampedModel):
 
     def __str__(self):
         return self.description
+
+    def get_absolute_url(self):
+        return reverse('tickets:ticket_detail', kwargs={'pk': self.pk})
 
 
 class Task(TimeStampedModel):

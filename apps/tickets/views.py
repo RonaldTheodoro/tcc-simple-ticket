@@ -73,7 +73,6 @@ class TicketEdit(generic.UpdateView):
     model = models.Ticket
     template_name = 'tickets/ticket_edit.html'
     form_class = forms.TicketForm
-    success_url = '/'
 
 
 def task_detail(request, ticket_pk, task_pk):
