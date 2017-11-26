@@ -45,6 +45,10 @@
                 <td>{{ log.description }}</td>
                 <td class="col-1">{{ log.created }}</td>
             </tr>
+        {% empty %}
+            <tr>
+                <td>There is no logs at moment</td>
+            </tr>
         {% endfor %}
     </table>
 {% endblock content %}
