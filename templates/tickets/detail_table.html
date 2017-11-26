@@ -5,7 +5,11 @@
     </tr>
     <tr>
         <th class="col-1">Description</th>
-        <td>{{ ticket.description }}</td>
+        <td>
+            <a href="{% url 'tickets:detail' ticket.pk %}">
+                {{ ticket.description }}
+            </a>
+        </td>
     </tr>
     <tr>
         <th class="col-1">Active</th>
