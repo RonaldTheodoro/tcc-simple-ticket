@@ -5,38 +5,46 @@
     
     <table class="table table-bordered table-striped">
         <tr>
-            <th class="text-nowrap" scope="row">Description</th>
+            <th class="col-1">Description</th>
             <td>{{ task.description }}</td>
         </tr>
         <tr>
-            <th class="text-nowrap" scope="row">Priority</th>
+            <th class="col-1">Priority</th>
             <td>{{ task.priority }}</td>
         </tr>
         <tr>
-            <th class="text-nowrap" scope="row">Active</th>
+            <th class="col-1">Active</th>
             <td>{{ task.active }}</td>
         </tr>
         <tr>
-            <th class="text-nowrap" scope="row">Creator</th>
+            <th class="col-1">Creator</th>
             <td>{{ task.creator }}</td>
         </tr>
         <tr>
-            <th class="text-nowrap" scope="row">Executor</th>
+            <th class="col-1">Executor</th>
             <td>{{ task.executor }}</td>
         </tr>
         <tr>
-            <th class="text-nowrap" scope="row">Created</th>
+            <th class="col-1">Created</th>
             <td>{{ task.created }}</td>
         </tr>
         <tr>
-            <th class="text-nowrap" scope="row">Modified</th>
+            <th class="col-1">Modified</th>
             <td>{{ task.modified }}</td>
         </tr>
         {% if not task.active %}
             <tr>
-                <th class="text-nowrap" scope="row">Finished at</th>
+                <th class="col-1">Finished at</th>
                 <td>{{ task.finished_at }}</td>
             </tr>
         {% endif %}
+    </table>
+    <table class="table table-bordered table-striped">
+        {% for log in task.logs.all %}
+            <tr>
+                <td>{{ log.description }}</td>
+                <td class="col-1">{{ log.created }}</td>
+            </tr>
+        {% endfor %}
     </table>
 {% endblock content %}
