@@ -11,7 +11,11 @@
     <tbody>
         {% for task in ticket.task.all %}
             <tr>
-                <td>{{ task.description }}</td>
+                <td>
+                    <a href="{% url 'tickets:task_detail' ticket.pk task.pk %}">
+                        {{ task.description }}
+                    </a>
+                </td>
                 <td>{{ task.priority }}</td>
                 <td>{{ task.active }}</td>
                 <td>{{ task.executor }}</td>

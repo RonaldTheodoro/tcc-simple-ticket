@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
@@ -66,3 +67,13 @@ class TicketList(generic.ListView):
 class TicketDetail(generic.DetailView):
     model = models.Ticket
     template_name = 'tickets/detail.html'
+
+
+def task_detail(request, ticket_pk, task_pk):
+    ticket = get_object_or_404(models.Ticket, pk=ticket_pk,)
+    task = get_object_or_404(ticket.task, pk=task_pk)
+    return render(
+        request,
+        'tickets/task_detail.html',
+        {'ticket': ticket, 'task': task}
+    )
