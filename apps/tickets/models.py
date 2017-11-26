@@ -82,6 +82,12 @@ class Task(TimeStampedModel):
     def __str__(self):
         return self.description
 
+    def get_absolute_url(self):
+        return reverse(
+            'tickets:task_detail',
+            kwargs={'ticket_pk': self.ticket.pk, 'task_pk': self.pk}
+        )
+
 
 class Log(TimeStampedModel):
     description = models.CharField('description', max_length=5000)
