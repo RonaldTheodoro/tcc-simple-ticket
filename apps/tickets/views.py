@@ -69,6 +69,13 @@ class TicketDetail(generic.DetailView):
     template_name = 'tickets/detail.html'
 
 
+class TicketEdit(generic.UpdateView):
+    model = models.Ticket
+    template_name = 'tickets/ticket_edit.html'
+    form_class = forms.TicketForm
+    success_url = '/'
+
+
 def task_detail(request, ticket_pk, task_pk):
     ticket = get_object_or_404(models.Ticket, pk=ticket_pk,)
     task = get_object_or_404(ticket.task, pk=task_pk)
