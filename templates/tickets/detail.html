@@ -2,6 +2,27 @@
 
 {% block content %}
     {% include 'tickets/detail_table.html' %}
-    
+
     {% include 'tickets/list_tasks.html' %}
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in ticket.files.all %}
+                <tr>
+                    <td>{{ file }}</td>
+                    <td><a href="#">file</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>There are no attached files</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock content %}
