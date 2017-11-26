@@ -20,3 +20,10 @@ class RegisterForm(forms.Form):
         widget=forms.ClearableFileInput(attrs={'multiple': True}),
         required=False
     )
+
+
+class TicketForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Ticket
+        fields = ('description', 'active')
