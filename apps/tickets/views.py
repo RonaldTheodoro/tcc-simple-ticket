@@ -66,7 +66,7 @@ class TicketList(generic.ListView):
 
 class TicketDetail(generic.DetailView):
     model = models.Ticket
-    template_name = 'tickets/detail.html'
+    template_name = 'tickets/ticket_detail.html'
 
 
 class TicketEdit(generic.UpdateView):
