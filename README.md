@@ -10,7 +10,7 @@
 6. Execute os testes
 
 ```console
-git clone https://ronaldtheodoro@bitbucket.org/ronaldtheodoro/luizalabs-employee-manager.git
+git clone https://github.com/RonaldTheodoro/tcc-simple-ticket
 cd luizalabs-employee-manager
 python3 -m venv .venv
 source .venv/bin/activate
