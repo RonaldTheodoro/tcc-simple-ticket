@@ -1,19 +1,18 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
+
+app_name = 'tickets'
+
 urlpatterns = [
-    url(r'^$', views.TicketList.as_view(), name='list'),
-    url(r'^(?P<pk>\d+)/$', views.TicketDetail.as_view(), name='ticket_detail'),
-    url(
-        r'^(?P<pk>\d+)/edit/$',
-        views.TicketEdit.as_view(),
-        name='ticket_edit'
-    ),
-    url(
-        r'^(?P<ticket_pk>\d+)/task/(?P<task_pk>\d+)/$',
+    path('', views.TicketList.as_view(), name='list'),
+    path('<int:pk>/', views.TicketDetail.as_view(), name='ticket_detail'),
+    path('<int:pk>/edit/', views.TicketEdit.as_view(), name='ticket_edit'),
+    path(
+        '<int:ticket_pk>/task/<int:task_pk>/',
         views.task_detail,
         name='task_detail'
     ),
-    url(r'^new_ticket/$', views.OpenTicketView.as_view(), name='new_ticket'),
+    path('new_ticket/', views.OpenTicketView.as_view(), name='new_ticket'),
 ]

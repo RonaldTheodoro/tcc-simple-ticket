@@ -1,35 +1,44 @@
-from django.conf.urls import include, url
+from django.conf.urls import url
+from django.urls import include, path, register_converter
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
+from . import converters
+
+
+register_converter(converters.UidConverter, 'uid')
+register_converter(converters.TokenConverter, 'token')
 
 urlpatterns = [
     # Admin
-    url(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     # Core app
-    url(r'^', include('apps.core.urls', namespace='core')),
+    path('', include('apps.core.urls', namespace='core')),
     # Tickets app
-    url(r'^tickets/', include('apps.tickets.urls', namespace='tickets')),
+    path('tickets/', include('apps.tickets.urls', namespace='tickets')),
     # Accounts app
-    url(r'^accounts/', include('apps.accounts.urls', namespace='accounts')),
-
-    url(
-        r'reset/$',
+    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
+    # Login and Logout views
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    # Reset views
+    path(
+        'reset/',
         auth_views.PasswordResetView.as_view(),
         name='password_reset'
     ),
-    url(
-        r'reset/done/$',
+    path(
+        'reset/done/',
         auth_views.PasswordResetDoneView.as_view(),
         name='password_reset_done'
     ),
-    url(
-        r'reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    path(
+        'reset/<uid:uidb64>/<token:token>/',
         auth_views.PasswordResetConfirmView.as_view(),
         name='password_reset_confirm'
     ),
-    url(
-        r'reset/complete/$',
+    path(
+        'reset/complete/',
         auth_views.PasswordResetCompleteView.as_view(),
         name='password_reset_complete'
     ),
