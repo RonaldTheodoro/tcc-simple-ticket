@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path, register_converter
 
-from apps.accounts import views as account_views
+from apps.core import views as core_views
 
 from . import converters
 
@@ -18,17 +18,15 @@ urlpatterns = [
     path('', include('apps.core.urls', namespace='core')),
     # Tickets app
     path('tickets/', include('apps.tickets.urls', namespace='tickets')),
-    # Accounts app
-    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
     # Login and Logout views
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     # Signup view
-    path('signup/', account_views.signup, name='signup'),
+    path('signup/', core_views.signup, name='signup'),
     # My profile view
     path(
         'my_account/',
-        account_views.UserUpdateView.as_view(),
+        core_views.UserUpdateView.as_view(),
         name='my_account'
     ),
     # Reset views
