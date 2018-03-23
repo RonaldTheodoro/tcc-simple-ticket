@@ -36,7 +36,8 @@ class Ticket(TimeStampedModel):
     requester = models.ForeignKey(
         User,
         verbose_name='requester',
-        related_name='ticket'
+        related_name='ticket',
+        on_delete=models.PROTECT
     )
 
     class Meta:
@@ -66,17 +67,20 @@ class Task(TimeStampedModel):
     ticket = models.ForeignKey(
         'Ticket',
         verbose_name='task',
-        related_name='task'
+        related_name='task',
+        on_delete=models.PROTECT
     )
     creator = models.ForeignKey(
         User,
         verbose_name='creator',
-        related_name='creator'
+        related_name='creator',
+        on_delete=models.PROTECT
     )
     executor = models.ForeignKey(
         User,
         verbose_name='executor',
-        related_name='executor'
+        related_name='executor',
+        on_delete=models.PROTECT
     )
 
     def __str__(self):
@@ -94,7 +98,8 @@ class Log(TimeStampedModel):
     task = models.ForeignKey(
         'Task',
         verbose_name='task',
-        related_name='logs'
+        related_name='logs',
+        on_delete=models.PROTECT
     )
 
     def __str__(self):
@@ -106,7 +111,8 @@ class File(models.Model):
     ticket = models.ForeignKey(
         'Ticket',
         verbose_name='ticket',
-        related_name='files'
+        related_name='files',
+        on_delete=models.PROTECT
     )
 
     def __str__(self):
