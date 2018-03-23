@@ -11,7 +11,7 @@
 
 ```console
 git clone https://github.com/RonaldTheodoro/tcc-simple-ticket
-cd luizalabs-employee-manager
+cd tcc-simple-ticket
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
