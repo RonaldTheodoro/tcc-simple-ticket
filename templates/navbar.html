@@ -12,7 +12,7 @@
             <a class="nav-link" href="{% url 'tickets:new_ticket' %}">
                 New Ticket
             </a>
-            <a class="nav-link" href="{% url 'accounts:my_account' %}">
+            <a class="nav-link" href="{% url 'my_account' %}">
                 Welcome {{ user }}
             </a>
             <a class="nav-link" href="{% url 'logout' %}">
@@ -22,7 +22,7 @@
             <a class="nav-link" href="{% url 'login' %}">
                 Login
             </a>
-            <a class="nav-link" href="{% url 'accounts:signup' %}">
+            <a class="nav-link" href="{% url 'signup' %}">
                 Sign Up
             </a>
         {% endif %}
