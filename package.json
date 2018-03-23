@@ -1,0 +1,20 @@
+{
+  "name": "tcc-simple-ticket",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:RonaldTheodoro/tcc-simple-ticket.git"
+  },
+  "author": "Ronald Theodoro <ronald.silva4@fatec.sp.gov.br> (https://github.com/RonaldTheodoro/)",
+  "license": "MIT",
+  "homepage": "https://github.com/RonaldTheodoro//tcc-simple-ticket#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1"
+  }
+}
