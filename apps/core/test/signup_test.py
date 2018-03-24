@@ -13,4 +13,4 @@ class SignUpTests(TestCase):
 
     def test_template(self):
         """Must use /signup.html"""
-        self.assertTemplateUsed(self.response, 'accounts/signup.html')
+        self.assertTemplateUsed(self.response, 'signup.html')

@@ -2,9 +2,9 @@
 
 {% block content %}
     <a href="{% url 'tickets:ticket_edit' ticket.pk %}">Edit Ticket</a>
-    {% include 'tickets/detail_table.html' %}
+    {% include 'detail_table.html' %}
 
-    {% include 'tickets/list_tasks.html' %}
+    {% include 'list_tasks.html' %}
 
     <table class="table table-bordered table-striped">
         <thead>

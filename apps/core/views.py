@@ -13,7 +13,7 @@ from . import forms
 @login_required
 def index(request):
     tickets = get_list_or_404(models.Ticket, active=True)
-    return render(request, 'core/index.html', {'object_list': tickets})
+    return render(request, 'index.html', {'object_list': tickets})
 
 
 def signup(request):
@@ -27,14 +27,14 @@ def signup(request):
 
     else:
         form = forms.SignUpForm()
-    return render(request, 'accounts/signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 
 @method_decorator(login_required, name='dispatch')
 class UserUpdateView(UpdateView):
     model = models.User
     fields = ('first_name', 'last_name', 'email', )
-    template_name = 'accounts/my_account.html'
+    template_name = 'my_account.html'
     success_url = reverse_lazy('my_account')
 
     def get_object(self):
