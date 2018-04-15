@@ -1,11 +1,11 @@
 from django.test import TestCase
-from django.shortcuts import resolve_url
+from django.urls import reverse
 
 
 class HomeTest(TestCase):
 
     def setUp(self):
-        self.response = self.client.get(resolve_url('core:index'))
+        self.response = self.client.get(reverse('core:index'))
 
     def test_get(self):
         """GET / must return status code 200"""
