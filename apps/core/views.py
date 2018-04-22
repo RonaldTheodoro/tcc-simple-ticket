@@ -1,18 +1,17 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_list_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView
 
 from apps.tickets import models
-
 from . import forms
 
 
 @login_required
 def index(request):
-    tickets = get_list_or_404(models.Ticket, active=True)
+    tickets = models.Ticket.objects.filter(active=True)
     return render(request, 'index.html', {'object_list': tickets})
 
 
