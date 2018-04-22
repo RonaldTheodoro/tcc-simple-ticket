@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a href="{% url 'tickets:ticket_edit' ticket.pk %}">Edit Ticket</a>
-    {% include 'detail_table.html' %}
-
-    {% include 'list_tasks.html' %}
-
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Download</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for file in ticket.files.all %}
-                <tr>
-                    <td>{{ file }}</td>
-                    <td><a href="#">file</a></td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td>There are no attached files</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <a href="{% url 'tickets:ticket_edit' ticket.pk %}">Edit Ticket</a>
+  {% include 'detail_table.html' %}
+  {% include 'list_tasks.html' %}
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for file in ticket.files.all %}
+        <tr>
+          <td>{{ file }}</td>
+          <td>
+            <a href="#">file</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td>There are no attached files</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock content %}
