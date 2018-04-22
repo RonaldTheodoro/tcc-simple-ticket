@@ -8,21 +8,24 @@ from model_utils.models import TimeStampedModel
 
 
 def get_filename_ext(filepath):
+    """Return a basename from a filepath"""
     basename = os.path.basename(filepath)
     return os.path.splitext(basename)
 
 
 def upload_file_path(instance, filename):
+    """Return upload path"""
     name, ext = get_filename_ext(filename)
     new_filename = hash(name)
-    pk = instance.ticket.pk
-    return f'files/{pk}/{pk}-{new_filename}{ext}'
+    ticket_pk = instance.ticket.pk
+    return f'files/{ticket_pk}/{ticket_pk}-{new_filename}{ext}'
 
 
 User = get_user_model()
 
 
 class Ticket(TimeStampedModel):
+    """Stores a single ticket, related to :model:`auth.User`"""
     description = models.CharField('description', max_length=255)
     active = models.BooleanField('active', default=True)
     finished_at = fields.MonitorField(
@@ -47,10 +50,12 @@ class Ticket(TimeStampedModel):
         return self.description
 
     def get_absolute_url(self):
+        """Return the ticket absolute url"""
         return reverse('tickets:ticket_detail', kwargs={'pk': self.pk})
 
 
 class Task(TimeStampedModel):
+    """Stores a single task, related to :model:`tickets.Ticket` :model:`auth.User`"""
     STATUS = Choices('low', 'medium', 'high')
 
     description = models.CharField('description', max_length=5000)
@@ -87,6 +92,7 @@ class Task(TimeStampedModel):
         return self.description
 
     def get_absolute_url(self):
+        """Return the task absolute url"""
         return reverse(
             'tickets:task_detail',
             kwargs={'ticket_pk': self.ticket.pk, 'task_pk': self.pk}
@@ -94,6 +100,7 @@ class Task(TimeStampedModel):
 
 
 class Log(TimeStampedModel):
+    """Stores a single log, related to :model:`tickets.Task`"""
     description = models.CharField('description', max_length=5000)
     task = models.ForeignKey(
         'Task',
@@ -107,6 +114,7 @@ class Log(TimeStampedModel):
 
 
 class File(models.Model):
+    """Stores a single file, related to :model:`tickets.Ticket`"""
     file = models.FileField('file', upload_to=upload_file_path)
     ticket = models.ForeignKey(
         'Ticket',
