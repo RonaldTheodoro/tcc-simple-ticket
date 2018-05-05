@@ -53,7 +53,7 @@ class OpenTicketView(generic.FormView):
 
     def save_files(self, files, ticket):
         for file in files:
-            models.File.objects.create(file=file, ticket=ticket)
+            models.File.objects.create_file(file, ticket)
 
 
 class TicketList(generic.ListView):

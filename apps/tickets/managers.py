@@ -21,3 +21,8 @@ class TaskManager(models.Manager):
             executor=executor
         )
 
+
+class FileManager(models.Manager):
+
+    def create_file(self, file, ticket):
+        return self.create(file=file, ticket=ticket)
