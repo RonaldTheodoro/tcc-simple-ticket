@@ -4,12 +4,13 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
 
-from . import forms, models
+from .models import User, Ticket, Task, File
+from .forms import RegisterForm, TicketForm
 
 
 @method_decorator(login_required, name='dispatch')
 class OpenTicketView(generic.FormView):
-    form_class = forms.RegisterForm
+    form_class = RegisterForm
     template_name = 'tickets/new.html'
     success_url = reverse_lazy('core:index')
 
@@ -37,13 +38,13 @@ class OpenTicketView(generic.FormView):
             return self.form_invalid(form)
 
     def get_user(self, username):
-        return models.User.objects.get(username=username)
+        return User.objects.get(username=username)
 
     def save_ticket(self, description, requester):
-        return models.Ticket.objects.create_ticket(description, requester)
+        return Ticket.objects.create_ticket(description, requester)
 
     def save_task(self, description, priority, ticket, requester, executor):
-        return models.Task.objects.create_task(
+        return Task.objects.create_task(
             description,
             priority,
             ticket,
@@ -53,27 +54,27 @@ class OpenTicketView(generic.FormView):
 
     def save_files(self, files, ticket):
         for file in files:
-            models.File.objects.create_file(file, ticket)
+            File.objects.create_file(file, ticket)
 
 
 class TicketList(generic.ListView):
-    model = models.Ticket
+    model = Ticket
     template_name = 'tickets/list.html'
 
 
 class TicketDetail(generic.DetailView):
-    model = models.Ticket
+    model = Ticket
     template_name = 'tickets/detail.html'
 
 
 class TicketEdit(generic.UpdateView):
-    model = models.Ticket
+    model = Ticket
     template_name = 'tickets/edit.html'
-    form_class = forms.TicketForm
+    form_class = TicketForm
 
 
 def task_detail(request, ticket_pk, task_pk):
-    ticket = get_object_or_404(models.Ticket, pk=ticket_pk)
+    ticket = get_object_or_404(Ticket, pk=ticket_pk)
     task = get_object_or_404(ticket.task, pk=task_pk)
     return render(
         request,

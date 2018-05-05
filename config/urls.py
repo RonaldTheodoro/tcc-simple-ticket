@@ -5,11 +5,11 @@ from django.urls import include, path, register_converter
 
 from apps.core import views as core_views
 
-from . import converters
+from .converters import UidConverter, TokenConverter
 
 
-register_converter(converters.UidConverter, 'uid')
-register_converter(converters.TokenConverter, 'token')
+register_converter(UidConverter, 'uid')
+register_converter(TokenConverter, 'token')
 
 urlpatterns = [
     # Admin

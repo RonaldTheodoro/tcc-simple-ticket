@@ -1,6 +1,6 @@
 from django import forms
 
-from . import models
+from .models import User, Ticket
 
 
 class RegisterForm(forms.Form):
@@ -15,7 +15,7 @@ class RegisterForm(forms.Form):
         widget=forms.Textarea(attrs={'class': 'form-control'})
     )
     priority = forms.ChoiceField(choices=PRIORITIES)
-    executor = forms.ModelChoiceField(queryset=models.User.objects.all())
+    executor = forms.ModelChoiceField(queryset=User.objects.all())
     files = forms.FileField(
         widget=forms.ClearableFileInput(attrs={'multiple': True}),
         required=False
@@ -25,5 +25,5 @@ class RegisterForm(forms.Form):
 class TicketForm(forms.ModelForm):
 
     class Meta:
-        model = models.Ticket
+        model = Ticket
         fields = ('description', 'active')
