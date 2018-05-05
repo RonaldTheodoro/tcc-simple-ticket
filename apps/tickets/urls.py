@@ -14,5 +14,5 @@ urlpatterns = [
         views.task_detail,
         name='task_detail'
     ),
-    path('new_ticket/', views.OpenTicketView.as_view(), name='new_ticket'),
+    path('new/', views.OpenTicketView.as_view(), name='new'),
 ]

@@ -10,7 +10,7 @@ from . import forms, models
 @method_decorator(login_required, name='dispatch')
 class OpenTicketView(generic.FormView):
     form_class = forms.RegisterForm
-    template_name = 'open_ticket.html'
+    template_name = 'new.html'
     success_url = reverse_lazy('core:index')
 
     def post(self, request, *args, **kwargs):
