@@ -80,6 +80,6 @@ def task_detail(request, ticket_pk, task_pk):
     task = get_object_or_404(ticket.task, pk=task_pk)
     return render(
         request,
-        'task_detail.html',
+        'tasks/detail.html',
         {'ticket': ticket, 'task': task}
     )
