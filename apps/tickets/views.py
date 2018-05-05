@@ -43,12 +43,12 @@ class OpenTicketView(generic.FormView):
         return models.Ticket.objects.create_ticket(description, requester)
 
     def save_task(self, description, priority, ticket, requester, executor):
-        return models.Task.objects.create(
-            description=description,
-            priority=priority,
-            ticket=ticket,
-            creator=requester,
-            executor=executor
+        return models.Task.objects.create_task(
+            description,
+            priority,
+            ticket,
+            requester,
+            executor
         )
 
     def save_files(self, files, ticket):

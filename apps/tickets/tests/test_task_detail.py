@@ -10,13 +10,7 @@ class TestTaskDetail(TestCase):
         user_data = {'username': 'ronald', 'password': '123456'}
         user = User.objects.create_user(**user_data)
         ticket = Ticket.objects.create_ticket('test', user)
-        task = Task.objects.create(
-            description='test',
-            priority='low',
-            ticket=ticket,
-            creator=user,
-            executor=user
-        )
+        task = Task.objects.create_task('test', 'low', ticket, user, user)
         self.client.login(**user_data)
         self.response = self.client.get(
             reverse(
