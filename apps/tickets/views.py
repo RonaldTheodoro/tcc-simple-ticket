@@ -71,7 +71,7 @@ class TicketDetail(generic.DetailView):
 
 class TicketEdit(generic.UpdateView):
     model = models.Ticket
-    template_name = 'ticket_edit.html'
+    template_name = 'edit.html'
     form_class = forms.TicketForm
 
 

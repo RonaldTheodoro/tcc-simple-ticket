@@ -12,7 +12,7 @@ class TestTicketEdit(TestCase):
         ticket = Ticket.objects.create(description='test', requester=user)
         self.client.login(**user_data)
         self.response = self.client.get(
-            reverse('tickets:ticket_edit', kwargs={'pk': ticket.pk}),
+            reverse('tickets:edit', kwargs={'pk': ticket.pk}),
             follow=True
         )
 
@@ -21,5 +21,5 @@ class TestTicketEdit(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        """Must use ticket_edit.html"""
-        self.assertTemplateUsed(self.response, 'ticket_edit.html')
+        """Must use edit.html"""
+        self.assertTemplateUsed(self.response, 'edit.html')

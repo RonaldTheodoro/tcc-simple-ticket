@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <a href="{% url 'tickets:ticket_edit' ticket.pk %}">Edit Ticket</a>
+  <a href="{% url 'tickets:edit' ticket.pk %}">Edit Ticket</a>
   {% include 'detail_table.html' %}
   {% include 'list_tasks.html' %}
   <table class="table table-bordered table-striped">
