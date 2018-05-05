@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 
 class TicketManager(models.Manager):
@@ -9,6 +10,8 @@ class TicketManager(models.Manager):
     def get_active_tickets(self):
         return self.filter(active=True)
 
+    def get_ticket(self, pk):
+        return get_object_or_404(self, pk=pk)
 
 class TaskManager(models.Manager):
 
@@ -20,6 +23,9 @@ class TaskManager(models.Manager):
             creator=creator,
             executor=executor
         )
+
+    def get_task(self, ticket_pk, task_pk):
+        return get_object_or_404(self, ticket=ticket_pk, pk=task_pk)
 
 
 class FileManager(models.Manager):
