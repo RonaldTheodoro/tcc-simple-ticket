@@ -10,7 +10,7 @@ from . import forms, models
 @method_decorator(login_required, name='dispatch')
 class OpenTicketView(generic.FormView):
     form_class = forms.RegisterForm
-    template_name = 'new.html'
+    template_name = 'tickets/new.html'
     success_url = reverse_lazy('core:index')
 
     def post(self, request, *args, **kwargs):
@@ -61,22 +61,22 @@ class OpenTicketView(generic.FormView):
 
 class TicketList(generic.ListView):
     model = models.Ticket
-    template_name = 'list.html'
+    template_name = 'tickets/list.html'
 
 
 class TicketDetail(generic.DetailView):
     model = models.Ticket
-    template_name = 'detail.html'
+    template_name = 'tickets/detail.html'
 
 
 class TicketEdit(generic.UpdateView):
     model = models.Ticket
-    template_name = 'edit.html'
+    template_name = 'tickets/edit.html'
     form_class = forms.TicketForm
 
 
 def task_detail(request, ticket_pk, task_pk):
-    ticket = get_object_or_404(models.Ticket, pk=ticket_pk,)
+    ticket = get_object_or_404(models.Ticket, pk=ticket_pk)
     task = get_object_or_404(ticket.task, pk=task_pk)
     return render(
         request,

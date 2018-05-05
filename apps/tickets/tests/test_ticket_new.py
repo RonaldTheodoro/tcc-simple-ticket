@@ -20,5 +20,5 @@ class TestTicketNew(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        """Must use open_ticket.html"""
-        self.assertTemplateUsed(self.response, 'new.html')
+        """Must use tickets/new.html"""
+        self.assertTemplateUsed(self.response, 'tickets/new.html')

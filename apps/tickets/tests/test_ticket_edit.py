@@ -21,5 +21,5 @@ class TestTicketEdit(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        """Must use edit.html"""
-        self.assertTemplateUsed(self.response, 'edit.html')
+        """Must use tickets/edit.html"""
+        self.assertTemplateUsed(self.response, 'tickets/edit.html')
