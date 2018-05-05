@@ -38,7 +38,7 @@ class Ticket(TimeStampedModel):
 
     def get_absolute_url(self):
         """Return the ticket absolute url"""
-        return reverse('tickets:ticket_detail', kwargs={'pk': self.pk})
+        return reverse('tickets:detail', kwargs={'pk': self.pk})
 
 
 class Task(TimeStampedModel):
