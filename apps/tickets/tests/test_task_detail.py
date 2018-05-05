@@ -9,7 +9,7 @@ class TestTaskDetail(TestCase):
     def setUp(self):
         user_data = {'username': 'ronald', 'password': '123456'}
         user = User.objects.create_user(**user_data)
-        ticket = Ticket.objects.create(description='test', requester=user)
+        ticket = Ticket.objects.create_ticket('test', user)
         task = Task.objects.create(
             description='test',
             priority='low',

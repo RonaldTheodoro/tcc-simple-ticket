@@ -40,10 +40,7 @@ class OpenTicketView(generic.FormView):
         return models.User.objects.get(username=username)
 
     def save_ticket(self, description, requester):
-        return models.Ticket.objects.create(
-            description=description,
-            requester=requester
-        )
+        return models.Ticket.objects.create_ticket(description, requester)
 
     def save_task(self, description, priority, ticket, requester, executor):
         return models.Task.objects.create(
