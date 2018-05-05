@@ -1,5 +1,3 @@
-import os
-
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
@@ -7,6 +5,7 @@ from model_utils import Choices, fields
 from model_utils.models import TimeStampedModel
 
 from .utils import upload_file_path
+from . import managers
 
 User = get_user_model()
 
@@ -29,6 +28,8 @@ class Ticket(TimeStampedModel):
         related_name='ticket',
         on_delete=models.PROTECT
     )
+
+    objects = managers.TicketManager()
 
     class Meta:
         ordering = ['-created', 'active']
@@ -75,6 +76,8 @@ class Task(TimeStampedModel):
         on_delete=models.PROTECT
     )
 
+    objects = managers.TaskManager()
+
     def __str__(self):
         return self.description
 
@@ -109,6 +112,8 @@ class File(models.Model):
         related_name='files',
         on_delete=models.PROTECT
     )
+
+    objects = managers.FileManager()
 
     def __str__(self):
         return self.ticket.description

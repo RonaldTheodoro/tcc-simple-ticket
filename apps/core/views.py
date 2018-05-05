@@ -11,7 +11,7 @@ from . import forms
 
 @login_required
 def index(request):
-    tickets = models.Ticket.objects.filter(active=True)
+    tickets = models.Ticket.objects.get_active_tickets()
     return render(request, 'index.html', {'object_list': tickets})
 
 
