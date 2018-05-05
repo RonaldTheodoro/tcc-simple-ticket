@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.tickets.models import User
+from ..models import User
 
 
 class TestTicketList(TestCase):
