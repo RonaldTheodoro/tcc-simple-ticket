@@ -5,6 +5,7 @@ from ..models import User
 
 
 class TestTicketList(TestCase):
+    """Test TicketList"""
 
     def setUp(self):
         user_data = {'username': 'ronald', 'password': '123456'}

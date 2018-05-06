@@ -3,6 +3,7 @@ from django.test import TestCase
 
 
 class SignUpTests(TestCase):
+    """SignUp Tests"""
 
     def setUp(self):
         self.response = self.client.get(reverse('signup'))

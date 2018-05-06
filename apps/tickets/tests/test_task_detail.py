@@ -5,6 +5,7 @@ from ..models import User, Ticket, Task
 
 
 class TestTaskDetail(TestCase):
+    """Test TaskDetail"""
 
     def setUp(self):
         user_data = {'username': 'ronald', 'password': '123456'}
