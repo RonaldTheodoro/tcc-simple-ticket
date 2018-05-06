@@ -1,20 +1,14 @@
-from django.test import TestCase
-from django.urls import reverse
-
-from ..models import User, Ticket
+from .base_test import BaseTest
 
 
-class TestTicketEdit(TestCase):
+class TestTicketEdit(BaseTest):
     """Test TicketEdit"""
 
     def setUp(self):
-        user_data = {'username': 'ronald', 'password': '123456'}
-        user = User.objects.create_user(**user_data)
-        ticket = Ticket.objects.create_ticket('test', user)
-        self.client.login(**user_data)
-        self.response = self.client.get(
-            reverse('tickets:edit', kwargs={'pk': ticket.pk}),
-            follow=True
+        super(TestTicketEdit, self).setUp()
+        self.response = self.client_get(
+            'tickets:edit',
+            kwargs={'pk': self.ticket.pk}
         )
 
     def test_get(self):

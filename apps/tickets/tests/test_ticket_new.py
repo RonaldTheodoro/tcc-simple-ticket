@@ -1,20 +1,12 @@
-from django.test import TestCase
-from django.urls import reverse
-
-from ..models import User
+from .base_test import BaseTest
 
 
-class TestTicketNew(TestCase):
+class TestTicketNew(BaseTest):
     """Test TicketNew"""
 
     def setUp(self):
-        user_data = {'username': 'ronald', 'password': '123456'}
-        user = User.objects.create_user(**user_data)
-        self.client.login(**user_data)
-        self.response = self.client.get(
-            reverse('tickets:new'),
-            follow=True
-        )
+        super(TestTicketNew, self).setUp()
+        self.response = self.client_get('tickets:new')
 
     def test_get(self):
         """GET /tickets/new/ must return status code 200"""

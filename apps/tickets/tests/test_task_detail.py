@@ -1,24 +1,13 @@
-from django.test import TestCase
-from django.urls import reverse
+from .base_test import BaseTest
 
-from ..models import User, Ticket, Task
-
-
-class TestTaskDetail(TestCase):
+class TestTaskDetail(BaseTest):
     """Test TaskDetail"""
 
     def setUp(self):
-        user_data = {'username': 'ronald', 'password': '123456'}
-        user = User.objects.create_user(**user_data)
-        ticket = Ticket.objects.create_ticket('test', user)
-        task = Task.objects.create_task('test', 'low', ticket, user, user)
-        self.client.login(**user_data)
-        self.response = self.client.get(
-            reverse(
-                'tickets:task_detail',
-                kwargs={'ticket_pk': ticket.pk, 'task_pk': task.pk}
-            ),
-            follow=True
+        super(TestTaskDetail, self).setUp()
+        self.response = self.client_get(
+            'tickets:task_detail',
+            kwargs={'ticket_pk': self.ticket.pk, 'task_pk': self.task.pk}
         )
 
     def test_get(self):
