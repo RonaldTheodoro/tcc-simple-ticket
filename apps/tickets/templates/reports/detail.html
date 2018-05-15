@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>{{ report.title }}</h1>
-  <p>{{ report.description }}</p>
-  <p>Created at {{ report.created }} / Modified at {{ report.modified }}</p>
+  <div class="col-lg-8">
+    <h1 class="mt-4">{{ report.title }}</h1>
+    <hr/>
+    <p class="lead">{{ report.description }}</p>
+    <hr/>
+    <p>Created at {{ report.created }} / Modified at {{ report.modified }}</p>
+  </div>
   <table class="table able-sm table-striped">
     <thead class="thead-dark">
       <tr>
