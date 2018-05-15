@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
 
-from .models import User, Ticket, Task, File
+from .models import User, Ticket, Task, File, Report
 from .forms import RegisterForm, TicketForm
 
 
@@ -81,3 +81,7 @@ def task_detail(request, ticket_pk, task_pk):
         'tasks/detail.html',
         {'ticket': ticket, 'task': task}
     )
+
+class ReportList(generic.ListView):
+    model = Report
+    template_name = 'reports/list.html'

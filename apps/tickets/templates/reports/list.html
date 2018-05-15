@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <h2>Tickets Reports</h2>
+  <div class="table-responsive">
+    <table class="table able-sm table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Title</th>
+          <th>Created</th>
+          <th>Modified</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for report in object_list %}
+          <tr>
+            <td>
+              <a href="#">{{ report.title }}</a>
+            </td>
+            <td>{{ report.created }}</td>
+            <td>{{ report.modified }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
