@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ report.title }}</h1>
+  <p>{{ report.description }}</p>
+  <p>Created at {{ report.created }} / Modified at {{ report.modified }}</p>
+  <table class="table able-sm table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Related Tickets</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ticket in report.tickets.all %}
+        <tr>
+          <td>
+            <a href="{% url 'tickets:detail' ticket.id %}">
+              {{ ticket.description }}
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
+
