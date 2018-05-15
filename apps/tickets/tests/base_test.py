@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from ..models import User, Ticket, Task
+from ..models import Report, Task, Ticket, User
 
 
 class BaseTest(TestCase):
@@ -12,6 +12,7 @@ class BaseTest(TestCase):
         self.user = self.create_user()
         self.ticket = self.create_ticket(self.user)
         self.task = self.create_task(self.ticket, self.user)
+        self.report = self.create_report(self.ticket)
         self.client_login()
 
     def create_user(self):
@@ -25,6 +26,13 @@ class BaseTest(TestCase):
     def create_task(self, ticket, user):
         """Create a task register"""
         return Task.objects.create_task('test', 'low', ticket, user, user)
+
+    def create_report(self, ticket):
+        """Create a report register"""
+        report = Report.objects.create(title='test', description='test')
+        report.tickets.add(self.ticket)
+        report.save()
+        return report 
 
     def client_login(self):
         """Login a user"""

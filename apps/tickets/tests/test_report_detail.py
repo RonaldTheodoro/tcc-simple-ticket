@@ -7,7 +7,7 @@ class ReportDetailTest(BaseTest):
         super(ReportDetailTest, self).setUp()
         self.response = self.client_get(
             'tickets:report_detail',
-            kwargs={'pk': 1}
+            kwargs={'pk': self.report.pk}
         )
 
     def test_get(self):
