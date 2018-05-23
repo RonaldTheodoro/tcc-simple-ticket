@@ -25,7 +25,7 @@ class Ticket(TimeStampedModel):
     requester = models.ForeignKey(
         User,
         verbose_name='requester',
-        related_name='ticket',
+        related_name='tickets',
         on_delete=models.PROTECT
     )
 
