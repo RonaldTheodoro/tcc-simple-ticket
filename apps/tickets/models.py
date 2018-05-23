@@ -60,7 +60,7 @@ class Task(TimeStampedModel):
     ticket = models.ForeignKey(
         'Ticket',
         verbose_name='task',
-        related_name='task',
+        related_name='tasks',
         on_delete=models.PROTECT
     )
     creator = models.ForeignKey(
