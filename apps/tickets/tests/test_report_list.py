@@ -5,7 +5,7 @@ class ReportListTest(BaseTest):
 
     def setUp(self):
         super(ReportListTest, self).setUp()
-        self.response = self.client_get('reports:report_list')
+        self.response = self.client_get('reports:list')
 
     def test_get(self):
         """GET /reports/ must return status code 200"""

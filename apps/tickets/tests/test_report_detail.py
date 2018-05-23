@@ -6,7 +6,7 @@ class ReportDetailTest(BaseTest):
     def setUp(self):
         super(ReportDetailTest, self).setUp()
         self.response = self.client_get(
-            'reports:report_detail',
+            'reports:detail',
             kwargs={'pk': self.report.pk}
         )
 

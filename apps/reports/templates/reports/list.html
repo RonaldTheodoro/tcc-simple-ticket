@@ -17,7 +17,7 @@
         {% for report in reports %}
           <tr>
             <td>
-              <a href="{% url 'reports:report_detail' report.pk %}">
+              <a href="{% url 'reports:detail' report.pk %}">
                 {{ report.title }}
               </a>
             </td>

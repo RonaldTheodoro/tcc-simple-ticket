@@ -19,4 +19,4 @@ class Report(TimeStampedModel):
 
     def get_absolute_url(self):
         """Return the task absolute url"""
-        return reverse('reports:report_detail', kwargs={'pk': self.pk})
+        return reverse('reports:detail', kwargs={'pk': self.pk})
