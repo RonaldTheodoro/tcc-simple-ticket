@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
 
-from .models import User, Ticket, Task, File, Report
+from .models import User, Ticket, Task, File
 from .forms import RegisterForm, TicketForm
 
 

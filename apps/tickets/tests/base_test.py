@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from ..models import Report, Task, Ticket, User
+from ..models import Task, Ticket, User
+from apps.reports.models import Report
 
 
 class BaseTest(TestCase):

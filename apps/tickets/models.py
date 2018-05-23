@@ -117,16 +117,3 @@ class File(models.Model):
 
     def __str__(self):
         return self.ticket.description
-
-
-class Report(TimeStampedModel):
-    title = models.CharField('title', max_length=200)
-    description = models.TextField('description')
-    tickets = models.ManyToManyField(
-        'Ticket',
-        verbose_name='tickets',
-        related_name='reports'
-    )
-
-    def __str__(self):
-        return self.title

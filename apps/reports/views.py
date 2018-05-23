@@ -1,6 +1,6 @@
 from django.views import generic
 
-from apps.tickets.models import Report
+from .models import Report
 
 
 class ReportList(generic.ListView):

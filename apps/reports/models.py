@@ -1,3 +1,17 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 
-# Create your models here.
+from apps.tickets.models import Ticket
+
+
+class Report(TimeStampedModel):
+    title = models.CharField('title', max_length=200)
+    description = models.TextField('description')
+    tickets = models.ManyToManyField(
+        Ticket,
+        verbose_name='tickets',
+        related_name='reports'
+    )
+
+    def __str__(self):
+        return self.title
