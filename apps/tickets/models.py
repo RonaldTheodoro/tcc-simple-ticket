@@ -66,7 +66,7 @@ class Task(TimeStampedModel):
     creator = models.ForeignKey(
         User,
         verbose_name='creator',
-        related_name='creator',
+        related_name='opened',
         on_delete=models.PROTECT
     )
     executor = models.ForeignKey(
