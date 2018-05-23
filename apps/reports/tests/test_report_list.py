@@ -1,4 +1,4 @@
-from .base_test import BaseTest
+from apps.tickets.tests.base_test import BaseTest
 
 
 class ReportListTest(BaseTest):
