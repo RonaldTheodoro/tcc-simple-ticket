@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for report in object_list %}
+        {% for report in reports %}
           <tr>
             <td>
               <a href="{% url 'tickets:report_detail' report.pk %}">

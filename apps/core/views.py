@@ -12,7 +12,7 @@ from .forms import SignUpForm
 @login_required
 def index(request):
     tickets = Ticket.objects.get_active_tickets()
-    return render(request, 'index.html', {'object_list': tickets})
+    return render(request, 'index.html', {'tickets': tickets})
 
 
 def signup(request):

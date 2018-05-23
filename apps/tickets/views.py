@@ -60,6 +60,7 @@ class OpenTicketView(generic.FormView):
 class TicketList(generic.ListView):
     model = Ticket
     template_name = 'tickets/list.html'
+    context_object_name = 'tickets'
 
 
 class TicketDetail(generic.DetailView):
@@ -85,8 +86,10 @@ def task_detail(request, ticket_pk, task_pk):
 class ReportList(generic.ListView):
     model = Report
     template_name = 'reports/list.html'
+    context_object_name = 'reports'
 
 
 class ReportDetail(generic.DetailView):
     model = Report
     template_name = 'reports/detail.html'
+    
