@@ -15,10 +15,4 @@ urlpatterns = [
         name='task_detail'
     ),
     path('new/', views.OpenTicketView.as_view(), name='new'),
-    path('reports/', views.ReportList.as_view(), name='report_list'),
-    path(
-        'reports/<int:pk>/',
-        views.ReportDetail.as_view(),
-        name='report_detail'
-    ),
 ]

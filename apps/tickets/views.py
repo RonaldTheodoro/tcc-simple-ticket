@@ -82,14 +82,3 @@ def task_detail(request, ticket_pk, task_pk):
         'tasks/detail.html',
         {'ticket': ticket, 'task': task}
     )
-
-class ReportList(generic.ListView):
-    model = Report
-    template_name = 'reports/list.html'
-    context_object_name = 'reports'
-
-
-class ReportDetail(generic.DetailView):
-    model = Report
-    template_name = 'reports/detail.html'
-    

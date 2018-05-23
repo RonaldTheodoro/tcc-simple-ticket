@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # Project apps
     'apps.core',
     'apps.tickets',
+    'apps.reports',
 ]
 
 MIDDLEWARE = [

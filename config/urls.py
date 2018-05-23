@@ -18,6 +18,8 @@ urlpatterns = [
     path('', include('apps.core.urls', namespace='core')),
     # Tickets app
     path('tickets/', include('apps.tickets.urls', namespace='tickets')),
+    # Reports app
+    path('reports/', include('apps.reports.urls', namespace='reports')),
     # Login and Logout views
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
