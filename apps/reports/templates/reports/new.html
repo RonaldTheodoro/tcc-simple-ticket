@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form action="{% url 'reports:new' %}" method="POST" class="mb-4">
+    {% csrf_token %}
+    {% include 'form.html' %}
+    <button type="submit" class="btn btn-sucesss">Save report</button>
+  </form>
+{% endblock content %}
