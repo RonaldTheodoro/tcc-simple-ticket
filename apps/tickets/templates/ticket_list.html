@@ -14,7 +14,7 @@
         <tr>
           <td>{{ ticket.pk }}</td>
           <td>
-            <a href="{% url 'tickets:detail' ticket.pk %}">
+            <a href="{{ ticket.get_absolute_url }}">
               {{ ticket.description }}
             </a>
           </td>

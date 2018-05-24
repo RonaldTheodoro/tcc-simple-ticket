@@ -18,7 +18,7 @@
       {% for ticket in report.tickets.all %}
         <tr>
           <td>
-            <a href="{% url 'tickets:detail' ticket.id %}">
+            <a href="{{ ticket.get_absolute_url }}">
               {{ ticket.description }}
             </a>
           </td>
