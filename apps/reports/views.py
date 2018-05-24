@@ -12,3 +12,7 @@ class ReportList(generic.ListView):
 class ReportDetail(generic.DetailView):
     model = Report
     template_name = 'reports/detail.html'
+
+
+class ReportNew(generic.TemplateView):
+    template_name = 'reports/new.html'
