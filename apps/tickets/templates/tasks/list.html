@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for task in ticket.task.all %}
+    {% for task in ticket.tasks.all %}
       <tr>
         <td>
           <a href="{% url 'tickets:task_detail' ticket.pk task.pk %}">
