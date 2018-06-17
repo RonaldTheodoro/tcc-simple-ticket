@@ -40,6 +40,12 @@
     {% endif %}
   </table>
   <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Logs</th>
+        <th>Created</th>
+      </tr>
+    </thead>
     {% for log in task.logs.all %}
       <tr>
         <td>{{ log.description }}</td>
