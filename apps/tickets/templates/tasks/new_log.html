@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <h2>New Log</h2>
   <form action="{% url 'tickets:task_log' ticket_pk task_pk %}" method="POST" class="mb-4" enctype="multipart/form-data">
     {% csrf_token %}
     {% include 'form.html' %}
