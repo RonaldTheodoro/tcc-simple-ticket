@@ -19,3 +19,5 @@ django-model-utils = "*"
 [dev-packages]
 ipython = {extras = ["notebook"]}
 coverage = "*"
+pytest = "*"
+pytest-django = "*"
