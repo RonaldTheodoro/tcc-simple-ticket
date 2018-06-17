@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form action="{% url 'tickets:task_new' 7 %}" method="POST" class="mb-4" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include 'form.html' %}
+    <button type="submit" class="btn btn-sucesss">Save task</button>
+  </form>
+  {{ get_ticket_id }}
+{% endblock content %}

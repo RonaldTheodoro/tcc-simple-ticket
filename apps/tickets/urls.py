@@ -14,5 +14,6 @@ urlpatterns = [
         views.task_detail,
         name='task_detail'
     ),
+    path('<int:ticket_pk>/task/new', views.task_new, name='task_new'),
     path('new/', views.OpenTicketView.as_view(), name='new'),
 ]
