@@ -2,8 +2,9 @@
 
 {% block content %}
   {% if ticket.active %}
-    <a href="{% url 'tickets:edit' ticket.pk %}">Edit Ticket</a>
-    <a href="{% url 'tickets:task_new' ticket.pk %}">New Task</a>
+    <a href="{% url 'tickets:edit' ticket.pk %}">Edit Ticket</a> |
+    <a href="{% url 'tickets:task_new' ticket.pk %}">New Task</a> |
+    <a href="{% url 'tickets:close' ticket.pk %}">Close Ticket</a>
   {% endif %}
   {% include 'detail_table.html' %}
   {% include 'tasks/list.html' %}

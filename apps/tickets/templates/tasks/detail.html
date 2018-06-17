@@ -2,7 +2,7 @@
 
 {% block content %}
   {% if task.active %}
-    <a href="{% url 'tickets:task_log' ticket.pk task.pk %}">Add a log</a>
+    <a href="{% url 'tickets:task_log' ticket.pk task.pk %}">Add a log</a> | 
     <a href="{% url 'tickets:task_close' ticket.pk task.pk %}">Close Task</a>
   {% endif %}
   {% include 'detail_table.html' %}
