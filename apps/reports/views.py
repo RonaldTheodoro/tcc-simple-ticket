@@ -22,6 +22,13 @@ class ReportDetail(generic.DetailView):
 
 @method_decorator(login_required, name='dispatch')
 class ReportNew(generic.FormView):
-    form_class =  ReportForm
+    form_class = ReportForm
     template_name = 'reports/new.html'
     success_url = reverse_lazy('reports:list')
+
+
+@method_decorator(login_required, name='dispatch')
+class ReportEdit(generic.UpdateView):
+    model = Report
+    template_name = 'reports/edit.html'
+    form_class = ReportForm
