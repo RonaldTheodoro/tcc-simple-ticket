@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
 
-from .forms import RegisterForm, TaskForm, TaskLogForm, TicketForm
+from .forms import RegisterForm, TaskForm, TaskLogForm, TicketForm, TicketCloseForm
 from .models import File, Log, Task, Ticket, User
 
 
@@ -84,6 +84,36 @@ class TicketEdit(generic.UpdateView):
             raise Http404
 
         return obj
+
+
+@login_required
+def ticket_close(request, pk):
+    ticket = get_object_or_404(Ticket, pk=pk)
+
+    if not ticket.active:
+        raise Http404
+
+    open_tasks = []
+    for task in ticket.tasks.all():
+        if task.active:
+            open_tasks.append(task)
+
+    if len(open_tasks) > 0:
+        context = {'ticket_pk': pk, 'tasks': open_tasks}
+        return render(request, 'tickets/close.html', context)
+
+    if request.method == 'POST':
+        form = TicketCloseForm(request.POST)
+        if form.is_valid():
+            ticket.close_reason = form.cleaned_data.get('close_reason')
+            ticket.active = False
+            ticket.save()
+            return HttpResponseRedirect(
+                reverse('tickets:detail', kwargs={'pk': ticket.pk})
+            )
+    else:
+        form = TicketCloseForm()
+    return render(request, 'tickets/close.html', {'form': form})
 
 
 @login_required

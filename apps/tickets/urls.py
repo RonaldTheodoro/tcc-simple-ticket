@@ -15,6 +15,7 @@ urlpatterns = [
         name='task_detail'
     ),
     path('<int:ticket_pk>/task/new', views.task_new, name='task_new'),
+    path('<int:pk>/close', views.ticket_close, name='close'),
     path(
         '<int:ticket_pk>/task/<int:task_pk>/new_log',
         views.task_log,
