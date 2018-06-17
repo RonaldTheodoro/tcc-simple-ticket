@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
@@ -77,6 +77,14 @@ class TicketEdit(generic.UpdateView):
     template_name = 'tickets/edit.html'
     form_class = TicketForm
 
+    def get_object(self, queryset=None):
+        obj = super(TicketEdit, self).get_object(queryset)
+
+        if not obj.active:
+            raise Http404
+
+        return obj
+
 
 @login_required
 def task_detail(request, ticket_pk, task_pk):
@@ -88,11 +96,15 @@ def task_detail(request, ticket_pk, task_pk):
 
 @login_required
 def task_new(request, ticket_pk):
+    ticket = Ticket.objects.get_ticket(ticket_pk)
+
+    if not ticket.active:
+        raise Http404
+
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
             creator = User.objects.get(username=request.user.get_username())
-            ticket = Ticket.objects.get_ticket(ticket_pk)
             Task.objects.create_task(
                 description=form.cleaned_data.get('description'),
                 priority=form.cleaned_data.get('priority'),
@@ -111,20 +123,21 @@ def task_new(request, ticket_pk):
 
 @login_required
 def task_log(request, ticket_pk, task_pk):
+    task = Task.objects.get_task(ticket_pk, task_pk)
+
+    if not task.active:
+        raise Http404
+
     if request.method == 'POST':
         form = TaskLogForm(request.POST)
         if form.is_valid():
-            task = Task.objects.get_task(ticket_pk, task_pk)
-            Log.objects.create(
-                description=form.cleaned_data.get('description'),
-                task=task
+            description = form.cleaned_data.get('description')
+            Log.objects.create(description=description, task=task)
+            url = reverse(
+                'tickets:task_detail',
+                kwargs={'ticket_pk': ticket_pk, 'task_pk': task_pk}
             )
-            return HttpResponseRedirect(
-                reverse(
-                    'tickets:task_detail',
-                    kwargs={'ticket_pk': ticket_pk, 'task_pk': task_pk}
-                )
-            )
+            return HttpResponseRedirect(url)
     else:
         form = TaskLogForm()
     context = {'form': form, 'ticket_pk': ticket_pk, 'task_pk': task_pk}
@@ -133,10 +146,14 @@ def task_log(request, ticket_pk, task_pk):
 
 @login_required
 def task_close(request, ticket_pk, task_pk):
+    task = Task.objects.get_task(ticket_pk, task_pk)
+
+    if not task.active:
+        raise Http404
+
     if request.method == 'POST':
         form = TaskLogForm(request.POST)
         if form.is_valid():
-            task = Task.objects.get_task(ticket_pk, task_pk)
             Log.objects.create(
                 description=form.cleaned_data.get('description'),
                 task=task
