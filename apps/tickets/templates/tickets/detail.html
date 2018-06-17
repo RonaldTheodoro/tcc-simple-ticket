@@ -2,6 +2,7 @@
 
 {% block content %}
   <a href="{% url 'tickets:edit' ticket.pk %}">Edit Ticket</a>
+  <a href="{% url 'tickets:task_new' ticket.pk %}">New Task</a>
   {% include 'detail_table.html' %}
   {% include 'tasks/list.html' %}
   <table class="table table-bordered table-striped">
