@@ -2,7 +2,7 @@
 
 {% block content %}
   <h2>New Task</h2>
-  <form action="{% url 'tickets:task_new' ticket_pk %}" method="POST" class="mb-4" enctype="multipart/form-data">
+  <form method="POST" class="mb-4" enctype="multipart/form-data">
     {% csrf_token %}
     {% include 'form.html' %}
     <button type="submit" class="btn btn-sucesss">Save task</button>
