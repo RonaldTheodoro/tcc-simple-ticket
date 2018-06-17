@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <a href="{% url 'tickets:task_log' ticket.pk task.pk %}">Add a log</a>
   {% include 'detail_table.html' %}
   <table class="table table-bordered table-striped">
     <tr>
