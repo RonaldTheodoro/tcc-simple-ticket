@@ -104,4 +104,5 @@ def task_new(request, ticket_pk):
             )
     else:
         form = TaskForm()
-    return render(request, 'tasks/new.html', {'form': form})
+    context = {'form': form, 'ticket_pk': ticket_pk}
+    return render(request, 'tasks/new.html', context)
