@@ -149,4 +149,4 @@ def task_close(request, ticket_pk, task_pk):
     else:
         form = TaskLogForm()
     context = {'form': form, 'ticket_pk': ticket_pk, 'task_pk': task_pk}
-    return render(request, 'tasks/new_log.html', context)
+    return render(request, 'tasks/close.html', context)
