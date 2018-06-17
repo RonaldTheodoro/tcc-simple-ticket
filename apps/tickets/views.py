@@ -57,28 +57,29 @@ class OpenTicketView(generic.FormView):
             File.objects.create_file(file, ticket)
 
 
+@method_decorator(login_required, name='dispatch')
 class TicketList(generic.ListView):
     model = Ticket
     template_name = 'tickets/list.html'
     context_object_name = 'tickets'
 
 
+@method_decorator(login_required, name='dispatch')
 class TicketDetail(generic.DetailView):
     model = Ticket
     template_name = 'tickets/detail.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class TicketEdit(generic.UpdateView):
     model = Ticket
     template_name = 'tickets/edit.html'
     form_class = TicketForm
 
 
+@login_required
 def task_detail(request, ticket_pk, task_pk):
     ticket = Ticket.objects.get_ticket(ticket_pk)
     task = Task.objects.get_task(ticket_pk, task_pk)
-    return render(
-        request,
-        'tasks/detail.html',
-        {'ticket': ticket, 'task': task}
-    )
+    context = {'ticket': ticket, 'task': task}
+    return render(request, 'tasks/detail.html', context)
