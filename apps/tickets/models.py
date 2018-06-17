@@ -14,6 +14,7 @@ class Ticket(TimeStampedModel):
     """Stores a single ticket, related to :model:`auth.User`"""
     description = models.CharField('description', max_length=255)
     active = models.BooleanField('active', default=True)
+    close_reason = models.TextField('close reason', blank=True)
     finished_at = fields.MonitorField(
         'finished at',
         default=None,
