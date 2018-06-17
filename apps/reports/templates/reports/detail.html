@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <a href="{% url 'reports:edit' report.id %}">Edit Report</a>
   <div class="col-lg-8">
     <h1 class="mt-4">{{ report.title }}</h1>
     <hr/>
