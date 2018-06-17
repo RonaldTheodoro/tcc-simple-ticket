@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
 
-from .forms import RegisterForm, TaskForm, TicketForm
-from .models import File, Task, Ticket, User
+from .forms import RegisterForm, TaskForm, TaskLogForm, TicketForm
+from .models import File, Log, Task, Ticket, User
 
 
 @method_decorator(login_required, name='dispatch')
@@ -106,3 +106,24 @@ def task_new(request, ticket_pk):
         form = TaskForm()
     context = {'form': form, 'ticket_pk': ticket_pk}
     return render(request, 'tasks/new.html', context)
+
+
+def task_log(request, ticket_pk, task_pk):
+    if request.method == 'POST':
+        form = TaskLogForm(request.POST)
+        if form.is_valid():
+            task = Task.objects.get_task(ticket_pk, task_pk)
+            Log.objects.create(
+                description=form.cleaned_data.get('description'),
+                task=task
+            )
+            return HttpResponseRedirect(
+                reverse(
+                    'tickets:task_detail',
+                    kwargs={'ticket_pk': ticket_pk, 'task_pk': task_pk}
+                )
+            )
+    else:
+        form = TaskLogForm()
+    context = {'form': form, 'ticket_pk': ticket_pk, 'task_pk': task_pk}
+    return render(request, 'tasks/new_log.html', context)
