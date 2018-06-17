@@ -86,6 +86,7 @@ def task_detail(request, ticket_pk, task_pk):
     return render(request, 'tasks/detail.html', context)
 
 
+@login_required
 def task_new(request, ticket_pk):
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -108,6 +109,7 @@ def task_new(request, ticket_pk):
     return render(request, 'tasks/new.html', context)
 
 
+@login_required
 def task_log(request, ticket_pk, task_pk):
     if request.method == 'POST':
         form = TaskLogForm(request.POST)
@@ -129,6 +131,7 @@ def task_log(request, ticket_pk, task_pk):
     return render(request, 'tasks/new_log.html', context)
 
 
+@login_required
 def task_close(request, ticket_pk, task_pk):
     if request.method == 'POST':
         form = TaskLogForm(request.POST)
