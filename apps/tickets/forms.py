@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import User, Ticket, Task
+from .models import User, Ticket, Task, Log
 
 
 class RegisterForm(forms.Form):
@@ -34,3 +34,10 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ('description', 'priority', 'executor', )
+
+
+class TaskLogForm(forms.ModelForm):
+
+    class Meta:
+        model = Log
+        fields = ('description', )
