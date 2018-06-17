@@ -26,7 +26,14 @@ class TicketForm(forms.ModelForm):
 
     class Meta:
         model = Ticket
-        fields = ('description', 'active')
+        fields = ('description', 'active', )
+
+
+class TicketCloseForm(forms.ModelForm):
+
+    class Meta:
+        model = Ticket
+        fields = ('close_reason', )
 
 
 class TaskForm(forms.ModelForm):
