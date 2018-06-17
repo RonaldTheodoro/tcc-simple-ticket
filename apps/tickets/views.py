@@ -127,3 +127,26 @@ def task_log(request, ticket_pk, task_pk):
         form = TaskLogForm()
     context = {'form': form, 'ticket_pk': ticket_pk, 'task_pk': task_pk}
     return render(request, 'tasks/new_log.html', context)
+
+
+def task_close(request, ticket_pk, task_pk):
+    if request.method == 'POST':
+        form = TaskLogForm(request.POST)
+        if form.is_valid():
+            task = Task.objects.get_task(ticket_pk, task_pk)
+            Log.objects.create(
+                description=form.cleaned_data.get('description'),
+                task=task
+            )
+            task.active = False
+            task.save()
+            return HttpResponseRedirect(
+                reverse(
+                    'tickets:task_detail',
+                    kwargs={'ticket_pk': ticket_pk, 'task_pk': task_pk}
+                )
+            )
+    else:
+        form = TaskLogForm()
+    context = {'form': form, 'ticket_pk': ticket_pk, 'task_pk': task_pk}
+    return render(request, 'tasks/new_log.html', context)

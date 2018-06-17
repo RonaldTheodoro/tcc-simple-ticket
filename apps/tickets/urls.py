@@ -20,5 +20,10 @@ urlpatterns = [
         views.task_log,
         name='task_log'
     ),
+    path(
+        '<int:ticket_pk>/task/<int:task_pk>/close',
+        views.task_close,
+        name='task_close'
+    ),
     path('new/', views.OpenTicketView.as_view(), name='new'),
 ]
